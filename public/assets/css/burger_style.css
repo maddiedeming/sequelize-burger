@@ -20,3 +20,11 @@ img {
     background-color:#f67f72;
     color:white;
 }
+.btn-lettuce {
+    background-color:#adbf66;
+    color:white;
+}
+.errorMessage {
+    color:red;
+    font-weight:bold;
+}

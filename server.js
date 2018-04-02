@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const routes = require("./controllers/burgers_controller");
 const app = express();
 const PORT = process.env.PORT || 8080;
+var db = require("./models");
 // Config Settings
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,8 @@ app.set("view engine","handlebars");
 app.use("/", routes);
 app.use(express.static('public'));
 // Listener
-app.listen(PORT,function(){
-    console.log("App now listening at localhost:" + PORT);
+db.sequelize.sync().then(function(){
+    app.listen(PORT, function(){
+        console.log("App listening on PORT " + PORT);
+    });
 });

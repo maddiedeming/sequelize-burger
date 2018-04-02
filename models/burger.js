@@ -1,22 +1,17 @@
-// Global
-const orm = require("../config/orm.js");
-// Burger
-const burger = {
-    select: function(cb){
-        orm.selectAll("burgers",function(res){
-            cb(res);
+module.exports = function(sequelize,DataTypes){
+    var Burger = sequelize.define("Burger",{
+        Name: { type: DataTypes.STRING, allowNull: false },
+        Devoured: { type: DataTypes.BOOLEAN, defaultValue: 0 }
+    },{
+        timestamps: false
+    });
+    Burger.associate = function(models){
+        Burger.belongsTo(models.Customer,{
+            onDelete: "CASCADE",
+            foreignKey: {
+              allowNull: true
+            }
         });
-    },
-    create: function(cols,vals,cb){
-        orm.insertOne("burgers",cols,vals,function(res){
-            cb(res);
-        });
-    },
-    update: function(objColVals,condition,cb){
-        orm.updateOne("burgers",objColVals,condition,function(res){
-            cb(res);
-        });
-    }
+    };
+    return Burger;
 };
-// Export Burger
-module.exports = burger;

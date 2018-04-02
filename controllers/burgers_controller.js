@@ -1,30 +1,32 @@
 // Global
 const express = require("express");
-const burger = require("../models/burger.js");
 const router = express.Router();
+const db = require("../models");
 // Default the route to /burgers (Main Home Page)
 router.get('/',function(req,res){
     res.redirect("/burgers");
 });
-// Get Burgers
+// Get Burgers 
 router.get('/burgers',function(req,res){
-    burger.select(function(data){
-        var hbsObject = { burgers: data };
+    db.Burger.findAll({ include:[{model: db.Customer}],order: [ ['Name']]}).then(function(dbBurger){
+        var hbsObject = { burgers: dbBurger };
         res.render('index',hbsObject);
     });
 });
 // Create Burger
 router.post("/burgers/create",function(req,res){
-    burger.create(["burger_name"],[req.body.burger_name],function(result){
-        res.redirect("/burgers");
+    db.Burger.create({Name: req.body.burger_name}).then(function(dbBurger){
+        res.redirect('/burgers');
     });
 });
 // Update Burger
-router.put('/burgers/update/:id', function(req,res){
-    var condition = `id = ${req.params.id}`;
-    burger.update({ 'devoured': req.body.devoured },condition,function(data){
-        res.redirect('/burgers');
-    });
+router.put('/burgers/update/:burger_id',function(req,res){
+    db.Customer.findOrCreate({where: {Name: req.body.customer_name}}).spread((customer) => {
+        customer.get({ plain: true});
+        db.Burger.update({Devoured: 1, CustomerId: customer.id},{where: {id: req.params.burger_id}}).then(function(dbBurger){
+            res.redirect('/burgers');
+        })
+    })
 });
 // Export Router
 module.exports = router;

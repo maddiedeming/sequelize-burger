@@ -7,22 +7,26 @@
         <div class="col-lg-4">
             <h2 class="header">Burgers to Devour</h2>
             {{#each burgers}}
-                {{#unless this.devoured}}
-                    <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
-                        <div class="form-group">
-                            <ul>
-                                <li>
-                                    <button type="submit" name="devoured" value="1" class="btn btn-mustard">{{burger_name}}</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
+                {{#unless this.Devoured}}
+                    <ul>
+                        <li>
+                            <button data-toggle="popover" data-placement="right" data-html="true" data-title='Devour This Burger?' data-content='
+                                <form id="customer" action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
+                                    <div class="form-group">
+                                        <input name="customer_devoured" value="1" type="number" style="display:none;">
+                                        <input name="customer_name" type="text" class="form-control" placeholder="Enter Your Name">
+                                        <button type="submit" class="btn btn-block mt-2 btn-lettuce">Devour</button>
+                                    </div>
+                                </form>' 
+                            class="btn btn-mustard not-devoured">{{Name}}</button>
+                        </li>
+                    </ul>
                 {{/unless}}
             {{/each}}
         </div>
         <div class="col-lg-4 text-center">
             <img class="mb-3" src="assets/img/burger.png">
-            <form action="/burgers/create" method="POST">
+            <form id="newBurger" action="/burgers/create" method="POST">
                 <div class="form-group">
                     <input type="text" name="burger_name" class="form-control text-center" maxlength="50" placeholder="Enter Burger Name">
                     <button class="btn btn-ketchup btn-block my-2" type="submit">Add Burger</button>
@@ -32,14 +36,13 @@
         <div class="col-lg-4">
             <h2 class="header">Burgers Devoured</h2>
             {{#each burgers}}
-                {{#if this.devoured}}
-                    <div>
-                        <ul>
-                            <li>
-                                <button disabled class="btn btn-mustard">{{burger_name}}</button>
-                            </li>
-                        </ul>
-                    </div>
+                {{#if this.Devoured}}
+                    <ul>
+                        <li>
+                            <button disabled class="btn btn-mustard devoured">{{Name}}</button>
+                            <span class="badge badge-pill badge-light btn-lettuce">Eaten by {{Customer.Name}}!</span>
+                        </li>
+                    </ul>
                 {{/if}}
             {{/each}}
         </div>
