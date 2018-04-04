@@ -45,16 +45,8 @@ npm install
   - [x] Create at least one new `Customer` model and connect it with your `Burger` model.
 - [x] Edit the handlebars files and CSS stylesheets to implement some sort of additional feature to the site. 
 ### Bonus! (Challenge)
-<<<<<<< HEAD
 - [x] Add validations to your models where:
   - [x] A burger's name cannot be null
   - [x] A burger's devoured status is false by default
   - [x] A Customer's name cannot be null
 - [x] Order the Burgers you send back to the user in alphabetical order using the Sequelize "order" option.
-=======
-- [ ] Add validations to your models where:
-  - [ ] A burger's name cannot be null
-  - [ ] A burger's devoured status is false by default
-  - [ ] A Customer's name cannot be null
-- [ ] Order the Burgers you send back to the user in alphabetical order using the Sequelize "order" option.
->>>>>>> 49bd6a478b73f7aca7bdac7bd18633c1a0a0cc3a
