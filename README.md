@@ -12,6 +12,7 @@ In this assignment, you're going to Sequelize the `Burger` app you made last wee
 ### Install Locally
 ```
 git clone https://github.com/maddiedeming/sequelize-burger.git
+cd sequelize-burger/
 npm install
 ```
 ### config.json File
