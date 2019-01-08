@@ -31,7 +31,7 @@ npm install
 ### Command
 `node server.js`
 ## Requirements
-### Tier 1: Sequelized (Basic to Moderate)
+### Tier 1: Sequelized
 - [x] Remove all references to your vanilla MySQL queries and replace them with Sequelize queries.
   - [x] Replace your MySQL `Burger` model with a Sequelized equivalent.
     - [x] Edit the model and initial migration file to make the burger's devoured field carry a default value of false.
@@ -41,11 +41,11 @@ npm install
   - [x] Place your JawsDB details in the `production` property of your json file.
 - [x] Remove your old ORM file, as well as any references to it in `burgers_controller.js`. 
   - [x] Replace those references with Sequelize's ORM methods.
-### Tier 2: Customer Associations (Challenge)
+### Tier 2: Customer Associations
 - [x] Add in a Customer association to the project. 
   - [x] Create at least one new `Customer` model and connect it with your `Burger` model.
 - [x] Edit the handlebars files and CSS stylesheets to implement some sort of additional feature to the site. 
-### Bonus! (Challenge)
+## Bonus
 - [x] Add validations to your models where:
   - [x] A burger's name cannot be null
   - [x] A burger's devoured status is false by default
